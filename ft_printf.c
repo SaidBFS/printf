@@ -22,14 +22,20 @@ int		ft_printf(char *str, ...)
 	if (!(data = (t_data *)malloc(sizeof(t_data))))
 		return (0);
 	i = 0;
+	data->len = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
+		{
+			if (ft_check_conv(str, i) == 0)
+				return (0);
 			ft_parsing(str, data, ap, &i);
+			ft_apply_conv(str, data, ap, &i);
+		}
 		else
-			ft_putchar(str[i]);
+			ft_putchar_len(str[i], data);
 		i++;
 	}
 	va_end(ap);
-	return (0);
+	return (data->len);
 }

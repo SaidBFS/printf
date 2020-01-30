@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_struct.c                                     :+:      :+:    :+:   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 13:05:47 by saboufou          #+#    #+#             */
-/*   Updated: 2020/01/22 13:05:50 by saboufou         ###   ########.fr       */
+/*   Created: 2020/01/22 14:31:40 by saboufou          #+#    #+#             */
+/*   Updated: 2020/01/22 14:31:41 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	reset_struct(t_data *data)
+int     ft_check_conv(char *str, int i)
 {
-	data->type = 0;
-	data->width = 0;
-	data->precision = 0;
-	data->flag = 0;
-}
-
-void	print_struct(t_data *data)
-{
-	printf("type = %c\n", data->type);
-	printf("width = %d\n", data->width);
-	printf("precision = %d\n", data->precision);
-	printf("flag = %d\n", data->flag);
-}
-
-int	main()
-{
-	char str[] = "hehehee";
-	ft_printf("%-8.2s", str);
-	return (0);
+    i++;
+    while (str[i])
+    {
+        if (str[i] == 'c' || str[i] == 's' || str[i] == 'p' || str[i] == 'd'
+            || str[i] == 'i' || str[i] == 'u' || str[i] == 'x' || str[i] == 'X' 
+            || str[i] == '%')
+            return (1);
+        i++;
+    }
+    return (0);
 }
