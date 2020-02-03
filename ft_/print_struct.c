@@ -18,6 +18,8 @@ void	reset_struct(t_data *data)
 	data->width = 0;
 	data->precision = 0;
 	data->flag = 0;
+	data->moins = 0;
+	data->zero = 0;
 }
 
 void	print_struct(t_data *data)
@@ -30,8 +32,8 @@ void	print_struct(t_data *data)
 
 int	main()
 {
-//	char str[] = "hehehee";
-	ft_printf("%c\n", 4);
-	printf("%c%%\n", '4');
+	int	qlf = 2147483647;
+	ft_printf("%11d\n", qlf);
+	printf("%11d\n", qlf);
 	return (0);
 }

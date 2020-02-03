@@ -20,7 +20,7 @@ void ft_apply_c_s_perc(t_data *data, va_list ap, char c)
     if (c == 'c' || c == '%')
     {
         if (!(str = (char *)malloc(sizeof(char) * 2)))
-            return ;
+            return;
         if (c == 'c')
             str[0] = data->type;
         else
@@ -34,7 +34,7 @@ void ft_apply_c_s_perc(t_data *data, va_list ap, char c)
         if (data->precision > 0)
             str = ft_strndup(va_arg(ap, char *), data->precision);
         else
-            str = ft_strdup(va_arg(ap, char*));
+            str = ft_strdup(va_arg(ap, char *));
         if (data->width <= data->precision)
         {
             while (str[i])
@@ -78,20 +78,90 @@ void ft_apply_c_s_perc(t_data *data, va_list ap, char c)
 
 void ft_apply_d_i_u(t_data *data, va_list ap, char c)
 {
-    char *s;
+    char *str;
     int i;
 
-    s = va_arg(ap, char *);
+    if (c == 'd' || c == 'i')
+        str = ft_strdup(ft_itoa(va_arg(ap, int)));
+    else
+        str = ft_strdup(ft_itoa(va_arg(ap, unsigned int)));
     i = 0;
-    if (c == 'c')
+    if (data->width > data->precision)
     {
-        ft_putchar_len(s[i], data);
-        return;
+        if (data->precision == 0)
+        {
+            if (data->moins == 0)
+            {
+                while (i < (int)(data->width - ft_strlen(str)))
+                {
+                    ft_putchar_len(' ', data);
+                    i++;
+                }
+            }
+            i = 0;
+            while(str[i])
+            {
+                ft_putchar_len(str[i], data);
+                i++;
+            }
+            if (data->moins == 1)
+            {
+                while (i < (int)(data->width - ft_strlen(str)))
+                {
+                    ft_putchar_len(' ', data);
+                    i++;
+                }
+            }
+        }
+        else
+        {
+            if (data->moins == 0)
+            {
+                while (i < (int)(data->width - data->precision))
+                {
+                    ft_putchar_len(' ', data);
+                    i++;
+                }
+            }
+            i = 0;
+            while (i < (int)(data->precision - ft_strlen(str)))
+            {
+                ft_putchar_len('0', data);
+                i++;
+            }
+            i = 0;
+            while (str[i])
+            {
+                ft_putchar_len(str[i], data);
+                i++;
+            }
+            i = 0;
+            if (data->moins == 1)
+            {
+                while (i < (int)(data->width - data->precision))
+                {
+                    ft_putchar_len(' ', data);
+                    i++;
+                }
+            }
+        }
     }
-    while (s[i])
+    else
     {
-        ft_putchar_len(s[i], data);
-        i++;
+        if (data->precision > (int)ft_strlen(str))
+        {
+            while (i < (int)(data->precision - ft_strlen(str)))
+            {
+                ft_putchar_len('0', data);
+                i++;
+            }
+        }
+        i = 0;
+        while(str[i])
+        {
+            ft_putchar_len(str[i], data);
+            i++;
+        }
     }
 }
 
