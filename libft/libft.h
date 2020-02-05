@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 14:19:18 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/25 13:59:48 by loamar           ###   ########.fr       */
+/*   Updated: 2020/02/04 17:58:23 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void				ft_lstclear(t_list **lst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
-char *ft_strndup(const char *s1, size_t n);
+char				*ft_strndup(const char *s1, size_t n);
+char				*ft_itoa_base(unsigned long nb, char *base);
 
 #endif

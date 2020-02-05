@@ -19,7 +19,6 @@
 
 typedef struct        s_data{
     char        type;
-    int         flag;
     int         width;
     int         precision;
     int         len;
@@ -34,5 +33,9 @@ void	print_struct(t_data *data);
 void	ft_putchar_len(char c, t_data *data);
 int     ft_check_conv(char *str, int i);
 void    ft_apply_conv(char *str, t_data *data, va_list ap, int *i);
+void    ft_apply_d_i_u(t_data *data, va_list ap, char c);
+void    ft_apply_x_X(t_data *data, va_list ap, char c);
+void    ft_apply_p(t_data *data, va_list ap);
+void    ft_apply_c_s_perc(t_data *data, va_list ap, char c);
 
 #endif

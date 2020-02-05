@@ -17,7 +17,6 @@ void	get_flag(char *str, t_data *data, int *i)
 	if (str[*i] == '0')
 	{
 		data->zero = 1;
-		data->flag = 2;
 	}
 	while (str[*i] == '0')
 		*i = *i + 1;
@@ -25,7 +24,6 @@ void	get_flag(char *str, t_data *data, int *i)
 	{
 		data->moins = 1;
 		data->zero = 0;
-		data->flag = 1;
 	}
 	while (str[*i] == '-' || str[*i] == '0')
 		*i = *i + 1;
@@ -77,5 +75,5 @@ void    ft_parsing(char *str, t_data *data, va_list ap, int *i)
 	get_width(str, data, ap, i);
 	get_precision(str, data, ap, i);
 	get_type(str, data, i);
-	print_struct(data);
+	//print_struct(data);
 }

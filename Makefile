@@ -6,7 +6,7 @@
 #    By: saboufou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 17:16:05 by saboufou          #+#    #+#              #
-#    Updated: 2019/10/27 17:17:49 by saboufou         ###   ########.fr        #
+#    Updated: 2020/02/05 16:46:04 by saboufou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,12 +59,13 @@ SRCS = libft/ft_atoi.c \
 		libft/ft_lstlast.c \
 		libft/ft_lstnew.c \
 		libft/ft_strndup.c \
+		libft/ft_itoa_base.c \
 		libft/ft_lstsize.c
 
 PRINTF = ft_/ft_apply_conv.c \
+	ft_/ft_apply_d_i_u_x_X.c \
 	ft_/ft_printf.c \
-	ft_/ft_check.c \
-	ft_/ft_putchar_len.c \
+	ft_/ft_printf_utils.c \
 	ft_/ft_parsing.c \
 	ft_/print_struct.c
 

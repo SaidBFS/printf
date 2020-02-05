@@ -76,136 +76,45 @@ void ft_apply_c_s_perc(t_data *data, va_list ap, char c)
     }
 }
 
-void ft_apply_d_i_u(t_data *data, va_list ap, char c)
+static void print_p(t_data *data, char *str, int i)
 {
-    char *str;
-    int i;
-
-    if (c == 'd' || c == 'i')
-        str = ft_strdup(ft_itoa(va_arg(ap, int)));
-    else
-        str = ft_strdup(ft_itoa(va_arg(ap, unsigned int)));
+    if (data->width > (int)ft_strlen(str) && data->moins == 0)
+    {
+       while (i < (data->width - (int)ft_strlen(str) - 2))
+       {
+          ft_putchar_len(' ', data);
+          i++;
+       }
+    }
     i = 0;
-    if (data->width > data->precision)
+    ft_putchar_len('0', data);
+    ft_putchar_len('x', data);
+    while (str[i])
     {
-        if (data->precision == 0)
-        {
-            if (data->moins == 0)
-            {
-                while (i < (int)(data->width - ft_strlen(str)))
-                {
-                    ft_putchar_len(' ', data);
-                    i++;
-                }
-            }
-            i = 0;
-            while(str[i])
-            {
-                ft_putchar_len(str[i], data);
-                i++;
-            }
-            if (data->moins == 1)
-            {
-                while (i < (int)(data->width - ft_strlen(str)))
-                {
-                    ft_putchar_len(' ', data);
-                    i++;
-                }
-            }
-        }
-        else
-        {
-            if (data->moins == 0)
-            {
-                while (i < (int)(data->width - data->precision))
-                {
-                    ft_putchar_len(' ', data);
-                    i++;
-                }
-            }
-            i = 0;
-            while (i < (int)(data->precision - ft_strlen(str)))
-            {
-                ft_putchar_len('0', data);
-                i++;
-            }
-            i = 0;
-            while (str[i])
-            {
-                ft_putchar_len(str[i], data);
-                i++;
-            }
-            i = 0;
-            if (data->moins == 1)
-            {
-                while (i < (int)(data->width - data->precision))
-                {
-                    ft_putchar_len(' ', data);
-                    i++;
-                }
-            }
-        }
+       ft_putchar_len(str[i], data);
+       i++;
     }
-    else
-    {
-        if (data->precision > (int)ft_strlen(str))
-        {
-            while (i < (int)(data->precision - ft_strlen(str)))
-            {
-                ft_putchar_len('0', data);
-                i++;
-            }
-        }
-        i = 0;
-        while(str[i])
-        {
-            ft_putchar_len(str[i], data);
-            i++;
-        }
-    }
-}
-
-void ft_apply_x_X(t_data *data, va_list ap, char c)
-{
-    char *s;
-    int i;
-
-    s = va_arg(ap, char *);
     i = 0;
-    if (c == 'c')
+    if (data->width > (int)ft_strlen(str) && data->moins == 1)
     {
-        ft_putchar_len(s[i], data);
-        return;
-    }
-    while (s[i])
-    {
-        ft_putchar_len(s[i], data);
-        i++;
+        while (i < (data->width - (int)ft_strlen(str) - 2))
+        {
+           ft_putchar_len(' ', data);
+           i++;
+        }
     }
 }
 
 void ft_apply_p(t_data *data, va_list ap)
 {
-    char *s;
-    int i;
+   void *address;
+   unsigned long nb;
+   char    *str;
+   int      i;
 
-    s = va_arg(ap, char *);
+    address = va_arg(ap, void *);
+    nb = (unsigned long)address;
+    str = ft_itoa_base(nb, "0123456789abcdef");
     i = 0;
-    while (s[i])
-    {
-        ft_putchar_len(s[i], data);
-        i++;
-    }
-}
-
-void ft_apply_conv(char *str, t_data *data, va_list ap, int *i)
-{
-    if (str[*i] == 'c' || str[*i] == 's' || str[*i] == '%')
-        ft_apply_c_s_perc(data, ap, str[*i]);
-    if (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'u')
-        ft_apply_d_i_u(data, ap, str[*i]);
-    if (str[*i] == 'x' || str[*i] == 'X')
-        ft_apply_x_X(data, ap, str[*i]);
-    if (str[*i] == 'p')
-        ft_apply_p(data, ap);
+    print_p(data, str, i);
 }
