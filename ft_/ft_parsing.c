@@ -34,12 +34,22 @@ void	get_width(char *str, t_data *data, va_list ap, int *i)
 	int	j;
 
 	if (str[*i] == '*')
+	{
 		data->width = va_arg(ap, int);
+		if (data->width < 0)
+		{
+			data->moins = 1;
+			data->width = data->width * (-1);
+		}
+		*i = *i + 1;
+	}
 	else
+	{
 		data->width = ft_atoi(str + *i);
-	j = ft_strlen(ft_itoa(data->width));
-	if (data->width != 0)
-		*i = *i + j;
+		j = ft_strlen(ft_itoa(data->width));
+		if (data->width != 0)
+			*i = *i + j;
+	}
 }
 
 void 	get_precision(char *str, t_data *data, va_list ap, int *i)
@@ -48,6 +58,7 @@ void 	get_precision(char *str, t_data *data, va_list ap, int *i)
 	if (str[*i] == '.')
 	{
 		*i = *i + 1;
+		data->precisionfound = 1;
 		if (str[*i] == '*')
 			data->precision = va_arg(ap, int);
 		else
@@ -75,5 +86,5 @@ void    ft_parsing(char *str, t_data *data, va_list ap, int *i)
 	get_width(str, data, ap, i);
 	get_precision(str, data, ap, i);
 	get_type(str, data, i);
-	//print_struct(data);
+//	print_struct(data);
 }

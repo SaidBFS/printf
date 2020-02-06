@@ -34,8 +34,10 @@ int     ft_check_conv(char *str, int i)
 
 void ft_apply_conv(char *str, t_data *data, va_list ap, int *i)
 {
-    if (str[*i] == 'c' || str[*i] == 's' || str[*i] == '%')
-        ft_apply_c_s_perc(data, ap, str[*i]);
+    if (str[*i] == 'c' || str[*i] == '%')
+        ft_apply_c_perc(data, ap, str[*i]);
+    if (str[*i] == 's')
+        ft_apply_s(data, ap);
     if (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'u')
         ft_apply_d_i_u(data, ap, str[*i]);
     if (str[*i] == 'x' || str[*i] == 'X')
