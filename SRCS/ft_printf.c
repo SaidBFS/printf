@@ -15,6 +15,7 @@
 int		ft_printf(const char *str, ...)
 {
 	int			i;
+	int			len;
 	va_list		ap;
 	t_data		*data;
 
@@ -37,6 +38,7 @@ int		ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(ap);
+	len = data->len;
 	free(data);
-	return (data->len);
+	return (len);
 }

@@ -74,7 +74,7 @@ void		ft_apply_s(t_data *data, va_list ap)
 	if (data->precisionfound == 1)
 		str = ft_strndup(va_arg(ap, char *), data->precision);
 	else
-		str = ft_strdup(va_arg(ap, char *));
+		str = va_arg(ap, char *);
 	i = 0;
 	if (data->width < data->precision)
 		precis_sup_s(data, str, i);

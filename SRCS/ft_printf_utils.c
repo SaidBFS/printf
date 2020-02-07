@@ -6,7 +6,7 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:20:49 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/07 18:40:52 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/07 21:01:38 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ void	ft_putchar_len(char c, t_data *data)
 	data->len++;
 }
 
-/*
 int		main(void)
 {
 	int	qlf;
 
 	qlf = 42;
-	ft_printf("ft_printf --> %.d\n", qlf);
-	printf("   printf --> %.d\n", qlf);
+	ft_printf("ft_printf --> %10.15d\n", qlf);
+	printf("   printf --> %10.15d\n", qlf);
 	fflush(stdout);
+	system("leaks a.out");
 	return (0);
-}*/
+}

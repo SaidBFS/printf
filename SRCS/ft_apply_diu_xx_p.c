@@ -65,12 +65,12 @@ void		ft_apply_d_i_u(t_data *data, va_list ap, char c)
 	neg = 0;
 	if (c == 'd' || c == 'i')
 	{
-		str = ft_strdup(ft_itoa(va_arg(ap, int)));
+		str = ft_itoa(va_arg(ap, int));
 		if (str[0] == '-')
 			neg = 1;
 	}
 	else
-		str = ft_strdup(ft_itoa_base(va_arg(ap, unsigned int), "0123456789"));
+		str = ft_itoa_base(va_arg(ap, unsigned int), "0123456789");
 	i = 0;
 	if (data->width >= data->precision)
 	{
@@ -94,9 +94,9 @@ void		ft_apply_x_x(t_data *data, va_list ap, char c)
 	neg = 0;
 	nb = va_arg(ap, unsigned int);
 	if (c == 'x')
-		str = ft_strdup(ft_itoa_base(nb, "0123456789abcdef"));
+		str = ft_itoa_base(nb, "0123456789abcdef");
 	else
-		str = ft_strdup(ft_itoa_base(nb, "0123456789ABCDEF"));
+		str = ft_itoa_base(nb, "0123456789ABCDEF");
 	i = 0;
 	if (data->width > data->precision)
 	{
