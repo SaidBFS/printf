@@ -31,12 +31,12 @@ void	print_struct(t_data *data)
 	printf("zero = %d\n", data->zero);
 	fflush(stdout);
 }
-
+/*
 int	main()
 {
-//	unsigned int	qlf = 4294967295;
-	ft_printf("ft_printf --> %1.2i\n", -1);
-	printf("   printf --> %1.2i\n", -1);
+//	int	qlf = 2147483647;
+	ft_printf("ft_printf --> %.s\n", 42);
+	printf("   printf --> %.s\n", 42);
 	fflush(stdout);
 	return (0);
-}
+}*/
