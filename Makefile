@@ -6,7 +6,7 @@
 #    By: saboufou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 17:16:05 by saboufou          #+#    #+#              #
-#    Updated: 2020/02/07 18:44:50 by saboufou         ###   ########.fr        #
+#    Updated: 2020/02/07 18:50:55 by saboufou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ $(NAME):
 
 clean:
 	rm -f $(OBJ)
+	rm libft/*.o
 
 fclean: clean
 	rm -f $(NAME)
