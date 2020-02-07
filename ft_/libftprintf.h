@@ -39,5 +39,8 @@ void    ft_apply_x_X(t_data *data, va_list ap, char c);
 void    ft_apply_p(t_data *data, va_list ap);
 void    ft_apply_c_perc(t_data *data, va_list ap, char c);
 void    ft_apply_s(t_data *data, va_list ap);
+void precis_sup(t_data *data, char *str, int i, int neg);
+void width_sup_precis_ok(t_data *data, char *str, int i);
+void width_sup_precis_zero(t_data *data, char *str, int i);
 
 #endif

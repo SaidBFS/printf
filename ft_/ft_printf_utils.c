@@ -12,10 +12,14 @@
 
 #include "libftprintf.h"
 
-void	ft_putchar_len(char c, t_data *data)
+void	reset_struct(t_data *data)
 {
-	write(1, &c, 1);
-	data->len++;
+	data->type = 0;
+	data->width = 0;
+	data->precision = 0;
+	data->precisionfound = 0;
+	data->moins = 0;
+	data->zero = 0;
 }
 
 int     ft_check_conv(char *str, int i)
@@ -45,3 +49,19 @@ void ft_apply_conv(char *str, t_data *data, va_list ap, int *i)
     if (str[*i] == 'p')
         ft_apply_p(data, ap);
 }
+
+void	ft_putchar_len(char c, t_data *data)
+{
+	write(1, &c, 1);
+	data->len++;
+}
+
+/*
+int	main()
+{
+//	int	qlf = 2147483647;
+	ft_printf("ft_printf --> %.s\n", 42);
+	printf("   printf --> %.s\n", 42);
+	fflush(stdout);
+	return (0);
+}*/
