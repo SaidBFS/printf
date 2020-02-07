@@ -6,7 +6,7 @@
 #    By: saboufou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 17:16:05 by saboufou          #+#    #+#              #
-#    Updated: 2020/02/05 16:46:04 by saboufou         ###   ########.fr        #
+#    Updated: 2020/02/07 18:44:50 by saboufou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,26 +48,24 @@ SRCS = libft/ft_atoi.c \
 		libft/ft_substr.c \
 		libft/ft_tolower.c \
 		libft/ft_toupper.c \
-		libft/ft_putchar.c \
-		libft/ft_putnbr.c \
-		libft/ft_lstadd_front.c \
-		libft/ft_lstadd_back.c \
-		libft/ft_lstdelone.c \
-		libft/ft_lstclear.c \
-		libft/ft_lstiter.c \
-		libft/ft_lstmap.c \
-		libft/ft_lstlast.c \
-		libft/ft_lstnew.c \
+		libft/ft_lstadd_front_bonus.c \
+		libft/ft_lstadd_back_bonus.c \
+		libft/ft_lstdelone_bonus.c \
+		libft/ft_lstclear_bonus.c \
+		libft/ft_lstiter_bonus.c \
+		libft/ft_lstmap_bonus.c \
+		libft/ft_lstlast_bonus.c \
+		libft/ft_lstnew_bonus.c \
 		libft/ft_strndup.c \
 		libft/ft_itoa_base.c \
-		libft/ft_lstsize.c
+		libft/ft_lstsize_bonus.c
 
-PRINTF = ft_/ft_apply_conv.c \
-	ft_/ft_apply_d_i_u_x_X.c \
-	ft_/ft_printf.c \
-	ft_/ft_printf_utils.c \
-	ft_/ft_parsing.c \
-	ft_/print_struct.c
+PRINTF = SRCS/ft_apply_c_s_perc.c \
+	SRCS/ft_apply_diu_xx_p.c \
+	SRCS/ft_printf.c \
+	SRCS/ft_printf_utils.c \
+	SRCS/ft_parsing.c \
+	SRCS/ft_print_diu_xx_p.c
 
 OBJ = $(SRCS:.c=.o) $(PRINTF:.c=.o)
 
@@ -77,7 +75,7 @@ $(NAME):
 	gcc $(CFLAGS) -c $(SRCS)
 	mv *.o libft/
 	gcc $(CFLAGS) -c $(PRINTF)
-	mv *.o ft_/
+	mv *.o SRCS/
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 

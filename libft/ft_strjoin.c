@@ -3,40 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 11:07:31 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/23 16:36:04 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/27 18:32:09 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/01 19:36:54 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	lens1;
-	size_t	lens2;
-	char	*dest;
-	int		i;
+	char	*dst;
+	int		len1;
+	int		len2;
 
 	if (!s1 || !s2)
-		return (0);
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	if (!(dest = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1))))
-		return (0);
-	i = 0;
-	while (s1[i] != '\0')
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	dst = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!dst)
+		return (NULL);
+	len1 = 0;
+	while (s1[len1])
 	{
-		dest[i] = s1[i];
-		i++;
+		dst[len1] = s1[len1];
+		len1++;
 	}
-	i = 0;
-	while (s2[i] != '\0')
-	{
-		dest[i + lens1] = s2[i];
-		i++;
-	}
-	dest[i + lens1] = '\0';
-	return (dest);
+	len2 = 0;
+	while (s2[len2])
+		dst[len1++] = s2[len2++];
+	dst[len1] = '\0';
+	return (dst);
 }

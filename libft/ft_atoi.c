@@ -3,36 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 10:01:04 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/22 13:05:47 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/08 18:20:09 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/09 20:04:44 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	long	i;
-	long	neg;
-	long	stock;
+	long	nb;
+	int		i;
+	int		sign;
 
 	i = 0;
-	stock = 0;
-	neg = 0;
-	while ((str[i] >= 7 && str[i] <= 13) || str[i] == ' ')
+	sign = 1;
+	nb = 0;
+	while (str[i] == '\r' || str[i] == '\n' || str[i] == '\t'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
 		i++;
 	if (str[i] == '-')
-		neg = 1;
+		sign = -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
-		stock = ((stock * 10) + (str[i] - 48));
+		nb = nb * 10;
+		nb = nb + (str[i] - 48);
 		i++;
 	}
-	if (neg > 0)
-		return (-stock);
-	return (stock);
+	return (nb * sign);
 }

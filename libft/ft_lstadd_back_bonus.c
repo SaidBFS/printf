@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/25 13:58:15 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/25 13:58:53 by loamar           ###   ########.fr       */
+/*   Created: 2019/11/12 16:05:05 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/12 16:05:22 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	write(1, &c, 1);
+	t_list	*list;
+
+	list = *alst;
+	if (*alst == NULL)
+		*alst = new;
+	else
+	{
+		while (list->next)
+			list = list->next;
+		list->next = new;
+	}
 }

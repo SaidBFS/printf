@@ -3,37 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 16:04:16 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/22 16:37:57 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/26 21:54:18 by saboufou          #+#    #+#             */
+/*   Updated: 2019/10/30 02:55:33 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				*ft_memmove(void *dst, const void *src, size_t len)
+void			*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t			pos;
-	unsigned char	*str_dst;
-	unsigned char	*str_src;
+	char	*dest;
+	char	*source;
 
-	if (!dst && !src)
+	dest = (char *)dst;
+	source = (char *)src;
+	if (!dest && !source)
 		return (NULL);
-	str_dst = (unsigned char *)dst;
-	str_src = (unsigned char *)src;
-	pos = 0;
-	if (str_dst > str_src)
-		while (0 < len)
+	if (dest > source)
+	{
+		dest = dest + len - 1;
+		source = source + len - 1;
+		while (len > 0)
 		{
-			str_dst[len - 1] = str_src[len - 1];
+			*dest-- = *source--;
 			len--;
 		}
-	else
-		while (pos < len)
-		{
-			str_dst[pos] = str_src[pos];
-			pos++;
-		}
+		return (dst);
+	}
+	while (len > 0)
+	{
+		*dest++ = *source++;
+		len--;
+	}
 	return (dst);
 }

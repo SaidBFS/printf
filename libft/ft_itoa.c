@@ -3,48 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 16:56:31 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/22 16:59:35 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/28 19:26:17 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/12 16:15:18 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int		ft_get_size(unsigned int n)
+static	char	*fill_s(char *s, long nb, int n, int i)
 {
-	unsigned int	size;
-
-	size = 0;
-	while (n >= 10)
+	while (i > 0)
 	{
-		n /= 10;
-		size++;
+		s[i] = nb % 10 + '0';
+		nb = nb / 10;
+		i--;
 	}
-	return (size + 1);
+	if (n < 0)
+		s[i] = '-';
+	else
+		s[i] = nb % 10 + '0';
+	return (s);
 }
 
-char				*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
-	unsigned int	nb;
-	unsigned int	size;
-	int				i;
-	char			*str;
+	long	nb;
+	char	*s;
+	int		i;
 
-	nb = (n < 0) ? (unsigned int)(n * -1) : (unsigned int)n;
-	size = (n < 0) ? ft_get_size(nb) + 1 : ft_get_size(nb);
-	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
-		return (0);
-	if (n < 0)
-		str[0] = '-';
-	i = size - 1;
-	str[size] = '\0';
-	while (nb >= 10)
+	i = 1;
+	nb = n;
+	if (nb < 0)
 	{
-		str[i--] = (nb % 10) + '0';
-		nb /= 10;
+		nb = nb * (-1);
+		i++;
 	}
-	str[i] = (nb % 10) + '0';
-	return (str);
+	while (nb > 9)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	if (!(s = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	nb = n;
+	if (n < 0)
+		nb = nb * (-1);
+	s[i] = '\0';
+	i--;
+	return (fill_s(s, nb, n, i));
 }

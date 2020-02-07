@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 11:22:01 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/21 19:22:46 by loamar           ###   ########.fr       */
+/*   Created: 2019/11/12 16:07:33 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/12 16:07:35 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*result;
-	t_list	*first;
+	t_list	*new_list;
+	t_list	*first_list;
 
 	if (!lst || !f)
 		return (NULL);
-	if (!(result = ft_lstnew((*f)(lst->content))))
+	if (!(new_list = ft_lstnew((*f)(lst->content))))
 		return (NULL);
-	first = result;
+	first_list = new_list;
 	lst = lst->next;
 	while (lst)
 	{
-		if (!((result->next) = ft_lstnew((*f)(lst->content))))
+		if (!(new_list->next = ft_lstnew((*f)(lst->content))))
 		{
-			ft_lstclear(&first, (*del));
+			ft_lstclear(&first_list, (*del));
 			return (NULL);
 		}
-		result = result->next;
+		new_list = new_list->next;
 		lst = lst->next;
 	}
-	return (first);
+	return (first_list);
 }

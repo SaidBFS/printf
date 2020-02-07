@@ -3,35 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 14:22:07 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/22 15:39:46 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/26 19:26:25 by saboufou          #+#    #+#             */
+/*   Updated: 2019/10/30 02:12:48 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void					*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char	*str_dst;
-	unsigned char	*str_src;
-	size_t			pos;
+	size_t				i;
+	unsigned char		*dest;
+	unsigned char		chara;
+	const unsigned char	*source;
 
-	pos = 0;
-	str_dst = (unsigned char *)dst;
-	str_src = (unsigned char *)src;
-	if (n == 0)
-		return (NULL);
-	while (pos < n)
+	chara = c;
+	i = 0;
+	dest = dst;
+	source = src;
+	while (i < n)
 	{
-		str_dst[pos] = str_src[pos];
-		if (str_src[pos] == (unsigned char)c)
-		{
-			pos++;
-			return (str_dst + pos);
-		}
-		pos++;
+		dest[i] = source[i];
+		if (source[i] == chara)
+			return (&dest[i + 1]);
+		i++;
 	}
 	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:01:15 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/22 14:42:03 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/27 18:11:41 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/01 19:53:39 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t		pos;
-	char		*str;
+	char	*dst;
+	size_t	i;
 
+	i = 0;
 	if (!s)
-		return (0);
-	pos = 0;
-	if (ft_strlen(s) < start)
-		len = 0;
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	while (pos < len && s[start] != '\0')
+	if (ft_strlen(s) < start)
 	{
-		str[pos] = s[start];
-		pos++;
+		len = 0;
+		if (!(dst = (char *)malloc(sizeof(char) * (len + 1))))
+			return (NULL);
+		dst[i] = '\0';
+		return (dst);
+	}
+	if (!(dst = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	while (s[start] && i < len)
+	{
+		dst[i] = s[start];
+		i++;
 		start++;
 	}
-	str[pos] = '\0';
-	return (str);
+	dst[i] = '\0';
+	return (dst);
 }

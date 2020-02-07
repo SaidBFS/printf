@@ -3,55 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 15:52:26 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/24 16:03:37 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/27 20:02:25 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/12 16:17:45 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_set(char c, char const *set)
+static	int		index_start(char const *s1, char const *set)
 {
-	unsigned int i;
+	int	start;
+	int	j;
 
-	if (!set)
-		return (0);
-	i = 0;
-	while (set[i] != '\0')
+	start = 0;
+	j = 0;
+	while (s1[start])
 	{
-		if (set[i] == c)
-			return (1);
-		i++;
+		if (s1[start] != set[j])
+			j++;
+		if (set[j] == s1[start])
+		{
+			start++;
+			j = 0;
+		}
+		else if (set[j] == '\0')
+			break ;
 	}
-	return (0);
+	return (start);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+static	int		index_end(char const *s1, char const *set)
 {
-	char			*start;
-	char			*end;
-	char			*ret;
-	int				len;
-	unsigned int	i;
+	int	j;
+	int	end;
+	int	start;
 
-	if (!s1)
-		return (0);
-	start = (char *)s1;
-	end = (char *)s1 + ft_strlen(s1);
-	while (is_set(*start, set))
+	j = 0;
+	end = ft_strlen(s1);
+	start = index_start(s1, set);
+	while (end > start)
+	{
+		if (s1[end] != set[j])
+			j++;
+		if (set[j] == s1[end])
+		{
+			end--;
+			j = 0;
+		}
+		else if (set[j] == '\0')
+			break ;
+	}
+	return (end);
+}
+
+char			*ft_strtrim(char const *s1, char const *set)
+{
+	int		j;
+	int		start;
+	int		end;
+	int		len;
+	char	*dst;
+
+	if (!s1 || !set)
+		return (NULL);
+	start = index_start(s1, set);
+	end = index_end(s1, set);
+	len = end - start + 2;
+	if (!(dst = (char *)malloc(sizeof(char) * len)))
+		return (NULL);
+	j = 0;
+	while (start <= end)
+	{
+		dst[j] = s1[start];
 		start++;
-	if (start < end)
-		end--;
-	while (is_set(*end, set))
-		end--;
-	len = end - start + 1;
-	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	i = 0;
-	while (len-- > 0)
-		ret[i++] = *start++;
-	ret[i] = '\0';
-	return (ret);
+		j++;
+	}
+	dst[j] = '\0';
+	return (dst);
 }

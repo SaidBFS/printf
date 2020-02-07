@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 16:35:39 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/04 18:28:02 by saboufou         ###   ########.fr       */
+/*   Created: 2020/02/07 18:27:56 by saboufou          #+#    #+#             */
+/*   Updated: 2020/02/07 18:34:41 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_len(unsigned long nb, int len_base)
+static	int		ft_len(unsigned long nb, int len_base)
 {
 	int	size;
 
@@ -27,9 +27,9 @@ static	int	ft_len(unsigned long nb, int len_base)
 
 static	char	*ft_div_mod(unsigned long nb, char *base)
 {
-	int	size;
-	int	mod;
-	int	len_base;
+	int		size;
+	int		mod;
+	int		len_base;
 	char	*str;
 
 	len_base = ft_strlen(base);
@@ -39,7 +39,7 @@ static	char	*ft_div_mod(unsigned long nb, char *base)
 	str[size] = '\0';
 	size--;
 	mod = 0;
-	while(nb > 0)
+	while (nb > 0)
 	{
 		mod = nb % len_base;
 		str[size] = base[mod];
@@ -60,7 +60,7 @@ static	char	*ft_itoa_base_0(char *base)
 	return (str);
 }
 
-char	*ft_itoa_base(unsigned long nb, char *base)
+char			*ft_itoa_base(unsigned long nb, char *base)
 {
 	if (nb == 0)
 		return (ft_itoa_base_0(base));

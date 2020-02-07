@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 14:42:17 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/21 15:22:51 by loamar           ###   ########.fr       */
+/*   Created: 2019/11/12 16:06:32 by saboufou          #+#    #+#             */
+/*   Updated: 2019/11/12 16:06:34 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list		*elmt_now;
-	t_list		*elmt_next;
+	t_list	*elmt_now;
+	t_list	*elmt_next;
 
 	if (lst && del)
 	{
@@ -25,9 +25,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		{
 			elmt_now = elmt_next;
 			elmt_next = elmt_next->next;
-			del(elmt_now->content);
+			(*del)(elmt_now->content);
 			free(elmt_now);
 		}
+		*lst = NULL;
 	}
-	*lst = NULL;
 }
