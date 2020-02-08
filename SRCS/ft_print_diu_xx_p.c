@@ -12,7 +12,7 @@
 
 #include "../INCLUDES/libftprintf.h"
 
-static void	width_sup_precis_zero_flag(t_data *data, char *str, int i)
+static void width_sup_precis_zero_flag(t_data *data, char *str, int i)
 {
 	if (data->moins == 0 && data->zero == 0)
 	{
@@ -32,16 +32,14 @@ static void	width_sup_precis_zero_flag(t_data *data, char *str, int i)
 	}
 	i = 0;
 	if (data->moins == 1)
-	{
 		while (i < (int)(data->width - ft_strlen(str)))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 }
 
-void		width_sup_precis_zero(t_data *data, char *str, int i)
+void width_sup_precis_zero(t_data *data, char *str, int i)
 {
 	if (str[0] == '0' && data->precisionfound == 1)
 	{
@@ -50,7 +48,7 @@ void		width_sup_precis_zero(t_data *data, char *str, int i)
 			ft_putchar_len(' ', data);
 			i++;
 		}
-		return ;
+		return;
 	}
 	if (data->zero == 1)
 	{
@@ -66,7 +64,7 @@ void		width_sup_precis_zero(t_data *data, char *str, int i)
 	width_sup_precis_zero_flag(data, str, i);
 }
 
-static void	width_sup_precis_ok_flag(t_data *data, char *str, int i, int nbz)
+static void width_sup_precis_ok_flag(t_data *data, char *str, int i, int nbz)
 {
 	while (i < nbz)
 	{
@@ -84,18 +82,16 @@ static void	width_sup_precis_ok_flag(t_data *data, char *str, int i, int nbz)
 	}
 	i = 0;
 	if (data->moins == 1)
-	{
 		while (i < (data->width - (int)ft_strlen(str) - nbz))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 }
 
-void		width_sup_precis_ok(t_data *data, char *str, int i)
+void width_sup_precis_ok(t_data *data, char *str, int i)
 {
-	int	nbz;
+	int nbz;
 
 	if (str[0] == '-')
 		nbz = data->precision - (int)ft_strlen(str) + 1;
@@ -117,12 +113,12 @@ void		width_sup_precis_ok(t_data *data, char *str, int i)
 	width_sup_precis_ok_flag(data, str, i, nbz);
 }
 
-void		precis_sup(t_data *data, char *str, int i, int neg)
+void precis_sup(t_data *data, char *str, int i, int neg)
 {
-	int	len;
+	int len;
 
 	if (str[0] == '0' && data->precision == 0 && data->precisionfound == 1)
-		return ;
+		return;
 	len = (int)ft_strlen(str);
 	if (neg == 1)
 		len = (int)ft_strlen(str) - 1;

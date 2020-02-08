@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 23:44:56 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/07 18:40:40 by saboufou         ###   ########.fr       */
+/*   Created: 2019/10/08 18:20:09 by saboufou          #+#    #+#             */
+/*   Updated: 2020/02/08 16:02:40 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/libftprintf.h"
 
-int		ft_printf(const char *str, ...)
+int	ft_atoi(const char *str)
 {
-	int			i;
-	va_list		ap;
-	t_data		data;
+	long	nb;
+	int		i;
+	int		sign;
 
-	va_start(ap, str);
 	i = 0;
-	data.len = 0;
-	while (str[i])
+	sign = 1;
+	nb = 0;
+	while (str[i] == '\r' || str[i] == '\n' || str[i] == '\t'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
-		if (str[i] == '%')
-		{
-			if (ft_check_conv(str, i) == 0)
-				return (0);
-			ft_parsing(str, &data, ap, &i);
-			ft_apply_conv(str, &data, ap, &i);
-		}
-		else
-			ft_putchar_len(str[i], &data);
+		nb = nb * 10;
+		nb = nb + (str[i] - 48);
 		i++;
 	}
-	va_end(ap);
-	return (data.len);
+	return (nb * sign);
 }

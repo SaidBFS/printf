@@ -12,16 +12,14 @@
 
 #include "../INCLUDES/libftprintf.h"
 
-static void	width_sup_s(t_data *data, char *str, int i)
+static void width_sup_s(t_data *data, char *str, int i)
 {
-	if (data->moins == 0)
-	{
+	if (!data->moins)
 		while (i < (data->width - (int)ft_strlen(str)))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 	i = 0;
 	while (str[i])
 	{
@@ -29,26 +27,22 @@ static void	width_sup_s(t_data *data, char *str, int i)
 		i++;
 	}
 	i = 0;
-	if (data->moins == 1)
-	{
+	if (data->moins)
 		while (i < (data->width - (int)ft_strlen(str)))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 }
 
-static void	precis_sup_s(t_data *data, char *str, int i)
+static void precis_sup_s(t_data *data, char *str, int i)
 {
-	if (data->moins == 0)
-	{
+	if (!data->moins)
 		while (i < (data->width - (int)ft_strlen(str)))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 	i = 0;
 	while (str[i])
 	{
@@ -56,81 +50,68 @@ static void	precis_sup_s(t_data *data, char *str, int i)
 		i++;
 	}
 	i = 0;
-	if (data->moins == 1)
-	{
+	if (data->moins)
 		while (i < (data->width - (int)ft_strlen(str)))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 }
 
-void		ft_apply_s(t_data *data, va_list ap)
+void ft_apply_s(t_data *data, va_list ap)
 {
-	int		i;
-	char	*str;
+	char *str;
 
-	if (data->precisionfound == 1)
-		str = ft_strndup(va_arg(ap, char *), data->precision);
-	else
-		str = va_arg(ap, char *);
-	i = 0;
+	str = va_arg(ap, char *);
+	if (!str)
+		str = ft_strdup("(null)");
+	if (data->precisionfound)
+		str = ft_strndup(va_arg(ap, char *), data);
 	if (data->width < data->precision)
-		precis_sup_s(data, str, i);
+		precis_sup_s(data, str, 0);
 	else
-		width_sup_s(data, str, i);
-	free(str);
+		width_sup_s(data, str, 0);
+	if (data->precisionfound || !str)
+		free(str);
 }
 
-static void	width_sup_c_perc(t_data *data, char *str, int i)
+static void width_sup_c_perc(t_data *data, char *str, int i)
 {
-	i = 0;
-	if (data->zero == 0 && data->moins == 0)
-	{
+	if (data->zero)
+		while (i < (data->width - 1))
+		{
+			ft_putchar_len('0', data);
+			i++;
+		}
+	if (!data->zero && !data->moins)
 		while (i < (data->width - 1))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 	ft_putchar_len(str[0], data);
 	i = 0;
-	if (data->moins == 1)
-	{
+	if (data->moins)
 		while (i < (data->width - 1))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
 }
 
-void		ft_apply_c_perc(t_data *data, va_list ap, char c)
+void ft_apply_c_perc(t_data *data, va_list ap, char c)
 {
-	char	*str;
-	int		i;
+	char *str;
 
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
-		return ;
+		return;
 	str[0] = '%';
 	if (c == 'c')
 		str[0] = va_arg(ap, int);
 	str[1] = '\0';
-	i = 0;
 	if (data->width > 0)
-	{
-		if (data->zero == 1)
-		{
-			while (i < (data->width - 1))
-			{
-				ft_putchar_len('0', data);
-				i++;
-			}
-		}
-		width_sup_c_perc(data, str, i);
-	}
+		width_sup_c_perc(data, str, 0);
 	else
-		ft_putchar_len(str[i], data);
+		ft_putchar_len(str[0], data);
 	free(str);
 }

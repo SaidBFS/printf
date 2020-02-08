@@ -87,7 +87,7 @@ void		ft_apply_d_i_u(t_data *data, va_list ap, char c)
 void		ft_apply_x_x(t_data *data, va_list ap, char c)
 {
 	char			*str;
-	unsigned long	nb;
+	unsigned int	nb;
 	int				i;
 	int				neg;
 
@@ -107,5 +107,4 @@ void		ft_apply_x_x(t_data *data, va_list ap, char c)
 	}
 	else
 		precis_sup(data, str, i, neg);
-	free(str);
 }

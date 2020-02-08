@@ -62,8 +62,8 @@ int		main(void)
 	int	qlf;
 
 	qlf = 42;
-	ft_printf("ft_printf --> %10.15d\n", qlf);
-	printf("   printf --> %10.15d\n", qlf);
+	ft_printf("ft_printf --> %.4s\n",  NULL);
+	printf("   printf --> %.4s\n",  NULL);
 	fflush(stdout);
 	system("leaks a.out");
 	return (0);
