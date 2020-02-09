@@ -14,25 +14,21 @@
 
 static void width_sup_precis_zero_flag(t_data *data, char *str, int i)
 {
-	if (data->moins == 0 && data->zero == 0)
-	{
-		while (i < (int)(data->width - ft_strlen(str)))
+	if (!data->moins && !data->zero)
+		while (i < (data->width - (int)ft_strlen(str)))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
-	i = 0;
-	if (str[0] == '-' && data->zero == 1)
-		i = 1;
+	i = (str[0] == '-' && data->zero) ? 1 : 0;
 	while (str[i])
 	{
 		ft_putchar_len(str[i], data);
 		i++;
 	}
 	i = 0;
-	if (data->moins == 1)
-		while (i < (int)(data->width - ft_strlen(str)))
+	if (data->moins)
+		while (i < (data->width - (int)ft_strlen(str)))
 		{
 			ft_putchar_len(' ', data);
 			i++;
@@ -41,7 +37,7 @@ static void width_sup_precis_zero_flag(t_data *data, char *str, int i)
 
 void width_sup_precis_zero(t_data *data, char *str, int i)
 {
-	if (str[0] == '0' && data->precisionfound == 1)
+	if (str[0] == '0' && data->precisionfound)
 	{
 		while (i < data->width)
 		{
@@ -50,18 +46,17 @@ void width_sup_precis_zero(t_data *data, char *str, int i)
 		}
 		return;
 	}
-	if (data->zero == 1)
+	if (data->zero)
 	{
 		if (str[0] == '-')
 			ft_putchar_len('-', data);
-		while (i < (int)(data->width - ft_strlen(str)))
+		while (i < (data->width - (int)ft_strlen(str)))
 		{
 			ft_putchar_len('0', data);
 			i++;
 		}
 	}
-	i = 0;
-	width_sup_precis_zero_flag(data, str, i);
+	width_sup_precis_zero_flag(data, str, 0);
 }
 
 static void width_sup_precis_ok_flag(t_data *data, char *str, int i, int nbz)
@@ -71,17 +66,14 @@ static void width_sup_precis_ok_flag(t_data *data, char *str, int i, int nbz)
 		ft_putchar_len('0', data);
 		i++;
 	}
-	if (str[0] == '-')
-		i = 1;
-	else
-		i = 0;
+	i = (str[0] == '-') ? 1 : 0;
 	while (str[i])
 	{
 		ft_putchar_len(str[i], data);
 		i++;
 	}
 	i = 0;
-	if (data->moins == 1)
+	if (data->moins)
 		while (i < (data->width - (int)ft_strlen(str) - nbz))
 		{
 			ft_putchar_len(' ', data);
@@ -99,32 +91,29 @@ void width_sup_precis_ok(t_data *data, char *str, int i)
 		nbz = data->precision - (int)ft_strlen(str);
 	if (nbz < 0)
 		nbz = 0;
-	if (data->moins == 0)
-	{
+	if (!data->moins)
 		while (i < (data->width - (int)ft_strlen(str) - nbz))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	}
-	i = 0;
 	if (str[0] == '-')
 		ft_putchar_len('-', data);
-	width_sup_precis_ok_flag(data, str, i, nbz);
+	width_sup_precis_ok_flag(data, str, 0, nbz);
 }
 
 void precis_sup(t_data *data, char *str, int i, int neg)
 {
 	int len;
 
-	if (str[0] == '0' && data->precision == 0 && data->precisionfound == 1)
+	if (str[0] == '0' && !data->precision && data->precisionfound)
 		return;
 	len = (int)ft_strlen(str);
-	if (neg == 1)
+	if (neg)
 		len = (int)ft_strlen(str) - 1;
 	if (data->precision > len)
 	{
-		if (neg == 1)
+		if (neg)
 			ft_putchar_len('-', data);
 		while (i < (data->precision - len))
 		{
@@ -132,9 +121,7 @@ void precis_sup(t_data *data, char *str, int i, int neg)
 			i++;
 		}
 	}
-	i = 0;
-	if (neg == 1 && data->precision > len)
-		i = 1;
+	i = (neg && data->precision > len) ? 1 : 0;
 	while (str[i])
 	{
 		ft_putchar_len(str[i], data);

@@ -12,7 +12,7 @@
 
 #include "../INCLUDES/libftprintf.h"
 
-static void width_sup_s(t_data *data, char *str, int i)
+static void precis_ok_s(t_data *data, char *str, int i)
 {
 	if (!data->moins)
 		while (i < (data->width - (int)ft_strlen(str)))
@@ -35,23 +35,23 @@ static void width_sup_s(t_data *data, char *str, int i)
 		}
 }
 
-static void precis_sup_s(t_data *data, char *str, int i)
+static void precis_tronque_s(t_data *data, char *str, int i)
 {
 	if (!data->moins)
-		while (i < (data->width - (int)ft_strlen(str)))
+		while (i < (data->width - data->precision))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
 	i = 0;
-	while (str[i])
+	while (i < data->precision)
 	{
 		ft_putchar_len(str[i], data);
 		i++;
 	}
 	i = 0;
 	if (data->moins)
-		while (i < (data->width - (int)ft_strlen(str)))
+		while (i < (data->width - data->precision))
 		{
 			ft_putchar_len(' ', data);
 			i++;
@@ -61,18 +61,27 @@ static void precis_sup_s(t_data *data, char *str, int i)
 void ft_apply_s(t_data *data, va_list ap)
 {
 	char *str;
+	char *null;
 
 	str = va_arg(ap, char *);
 	if (!str)
-		str = ft_strdup("(null)");
-	if (data->precisionfound)
-		str = ft_strndup(va_arg(ap, char *), data);
-	if (data->width < data->precision)
-		precis_sup_s(data, str, 0);
+	{
+		null = ft_strdup("(null)");
+		if (data->precision >= 0 && data->precision < (int)ft_strlen(null)
+				&& data->precisionfound)
+			precis_tronque_s(data, null, 0);
+		else
+			precis_ok_s(data, null, 0);
+		free(null);
+	}
 	else
-		width_sup_s(data, str, 0);
-	if (data->precisionfound || !str)
-		free(str);
+	{
+		if (data->precision >= 0 && data->precision < (int)ft_strlen(str)
+				&& data->precisionfound)
+			precis_tronque_s(data, str, 0);
+		else
+			precis_ok_s(data, str, 0);
+	}
 }
 
 static void width_sup_c_perc(t_data *data, char *str, int i)
@@ -105,9 +114,10 @@ void ft_apply_c_perc(t_data *data, va_list ap, char c)
 
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
 		return;
-	str[0] = '%';
 	if (c == 'c')
 		str[0] = va_arg(ap, int);
+	else
+		str[0] = '%';
 	str[1] = '\0';
 	if (data->width > 0)
 		width_sup_c_perc(data, str, 0);

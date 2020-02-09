@@ -41,13 +41,13 @@ void	ft_apply_conv(const char *str, t_data *data, va_list ap, int *i)
 {
 	if (str[*i] == 'c' || str[*i] == '%')
 		ft_apply_c_perc(data, ap, str[*i]);
-	if (str[*i] == 's')
+	else if (str[*i] == 's')
 		ft_apply_s(data, ap);
-	if (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'u')
+	else if (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'u')
 		ft_apply_d_i_u(data, ap, str[*i]);
-	if (str[*i] == 'x' || str[*i] == 'X')
+	else if (str[*i] == 'x' || str[*i] == 'X')
 		ft_apply_x_x(data, ap, str[*i]);
-	if (str[*i] == 'p')
+	else if (str[*i] == 'p')
 		ft_apply_p(data, ap);
 }
 
@@ -56,15 +56,15 @@ void	ft_putchar_len(char c, t_data *data)
 	write(1, &c, 1);
 	data->len++;
 }
-
+/*
 int		main(void)
 {
-	int	qlf;
+	void *qlf;
 
-	qlf = 42;
-	ft_printf("ft_printf --> %.4s\n",  NULL);
-	printf("   printf --> %.4s\n",  NULL);
+	qlf = NULL;
+	ft_printf("ft_printf --> %.p\n", &qlf);
+	printf("   printf --> %.p\n", &qlf);
 	fflush(stdout);
 	system("leaks a.out");
 	return (0);
-}
+}*/

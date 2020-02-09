@@ -12,13 +12,6 @@
 
 #include "../INCLUDES/libftprintf.h"
 
-static void		*ft_s_null(t_data *data)
-{
-	char	*null;
-
-	null = ft_strdup("(null)");
-}
-
 char		*ft_strdup(const char *src)
 {
 	char	*dst;
@@ -33,28 +26,5 @@ char		*ft_strdup(const char *src)
 		i++;
 	}
 	dst[i] = '\0';
-	return (dst);
-}
-
-char *ft_strndup(const char *src, t_data *data)
-{
-	char *dst;
-	char *null;
-	int i;
-
-	i = 0;
-	if (data->precision < (int)ft_strlen(src))
-	{
-		if (!(dst = (char *)malloc(sizeof(char) * (data->precision + 1))))
-			return (NULL);
-		while (i < data->precision)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	else
-		dst = ft_strdup(src);
 	return (dst);
 }

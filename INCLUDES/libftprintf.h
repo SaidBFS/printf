@@ -46,8 +46,7 @@ void				precis_sup(t_data *data, char *str, int i, int neg);
 void				width_sup_precis_ok(t_data *data, char *str, int i);
 void				width_sup_precis_zero(t_data *data, char *str, int i);
 int                                     ft_atoi(const char *str);
-char                            *ft_strndup(const char *s1, t_data *data);
-char							*ft_strdup(const char *src)
+char							*ft_strdup(const char *src);
 size_t                          ft_strlen(const char *s);
 char                            *ft_itoa(int n);
 char                            *ft_itoa_base(unsigned long nb, char *base);
