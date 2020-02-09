@@ -59,7 +59,7 @@ void	ft_apply_conv(const char *str, t_data *data, va_list ap, int *i)
 
 int		main(void)
 {
-	int qlf;
+//	int qlf;
 
 	ft_printf("ft_printf --> %p\n", NULL);
 	printf("   printf --> %p\n", NULL);
