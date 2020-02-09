@@ -6,7 +6,7 @@
 #    By: saboufou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 17:16:05 by saboufou          #+#    #+#              #
-#    Updated: 2020/02/08 16:09:46 by saboufou         ###   ########.fr        #
+#    Updated: 2020/02/09 14:30:30 by saboufou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ SRCS =	SRCS/ft_apply_c_s_perc.c \
 		SRCS/ft_printf.c \
 		SRCS/ft_printf_utils.c \
 		SRCS/ft_parsing.c \
-		SRCS/ft_print_diu_xx_p.c
+		SRCS/ft_print_diu_xx.c
 
 LIBFT = LIBFT/ft_atoi.c \
 		LIBFT/ft_itoa.c \
 		LIBFT/ft_strlen.c \
-		LIBFT/ft_strndup.c \
+		LIBFT/ft_strdup.c \
 		LIBFT/ft_itoa_base.c 
 
 OBJ = 	SRCS/ft_apply_c_s_perc.o \
@@ -32,11 +32,11 @@ OBJ = 	SRCS/ft_apply_c_s_perc.o \
 		SRCS/ft_printf.o \
 		SRCS/ft_printf_utils.o \
 		SRCS/ft_parsing.o \
-		SRCS/ft_print_diu_xx_p.o \
+		SRCS/ft_print_diu_xx.o \
 		LIBFT/ft_atoi.o \
 		LIBFT/ft_itoa.o \
 		LIBFT/ft_strlen.o \
-		LIBFT/ft_strndup.o \
+		LIBFT/ft_strdup.o \
 		LIBFT/ft_itoa_base.o 
 
 all: $(NAME)

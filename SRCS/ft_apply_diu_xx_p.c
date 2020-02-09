@@ -6,13 +6,13 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:48:29 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/07 18:46:09 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/09 20:02:16 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/libftprintf.h"
 
-static void print_p(t_data *data, char *str, int i)
+static void	print_p(t_data *data, char *str, int i)
 {
 	if (data->width > (int)ft_strlen(str) && !data->moins)
 		while (i < (data->width - (int)ft_strlen(str) - 2))
@@ -37,28 +37,28 @@ static void print_p(t_data *data, char *str, int i)
 		}
 }
 
-void ft_apply_p(t_data *data, va_list ap)
+void		ft_apply_p(t_data *data, va_list ap)
 {
-	void *address;
-	unsigned long nb;
-	char *str;
+	void		*address;
+	long long	nb;
+	char		*str;
 
 	address = va_arg(ap, void *);
 	if (!address && data->precisionfound && !data->precision)
 		str = ft_strdup("");
 	else
 	{
-		nb = (unsigned long)address;
+		nb = (long long)address;
 		str = ft_itoa_base(nb, "0123456789abcdef");
 	}
 	print_p(data, str, 0);
 	free(str);
 }
 
-void ft_apply_d_i_u(t_data *data, va_list ap, char c)
+void		ft_apply_d_i_u(t_data *data, va_list ap, char c)
 {
-	char *str;
-	int neg;
+	char	*str;
+	int		neg;
 
 	neg = 0;
 	if (c == 'd' || c == 'i')
@@ -71,7 +71,7 @@ void ft_apply_d_i_u(t_data *data, va_list ap, char c)
 		str = ft_itoa_base(va_arg(ap, unsigned int), "0123456789");
 	if (data->width >= data->precision)
 	{
-		if (!data->precision)
+		if (!data->precisionfound)
 			width_sup_precis_zero(data, str, 0);
 		else
 			width_sup_precis_ok(data, str, 0);
@@ -81,10 +81,10 @@ void ft_apply_d_i_u(t_data *data, va_list ap, char c)
 	free(str);
 }
 
-void ft_apply_x_x(t_data *data, va_list ap, char c)
+void		ft_apply_x_x(t_data *data, va_list ap, char c)
 {
-	char *str;
-	unsigned int nb;
+	char			*str;
+	unsigned int	nb;
 
 	nb = va_arg(ap, unsigned int);
 	if (c == 'x')

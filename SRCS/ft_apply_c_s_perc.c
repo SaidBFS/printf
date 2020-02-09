@@ -6,13 +6,13 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:08:59 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/07 18:39:27 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/09 13:58:30 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/libftprintf.h"
 
-static void precis_ok_s(t_data *data, char *str, int i)
+static void	precis_ok_s(t_data *data, char *str, int i)
 {
 	if (!data->moins)
 		while (i < (data->width - (int)ft_strlen(str)))
@@ -35,7 +35,7 @@ static void precis_ok_s(t_data *data, char *str, int i)
 		}
 }
 
-static void precis_tronque_s(t_data *data, char *str, int i)
+static void	precis_tronque_s(t_data *data, char *str, int i)
 {
 	if (!data->moins)
 		while (i < (data->width - data->precision))
@@ -58,10 +58,10 @@ static void precis_tronque_s(t_data *data, char *str, int i)
 		}
 }
 
-void ft_apply_s(t_data *data, va_list ap)
+void		ft_apply_s(t_data *data, va_list ap)
 {
-	char *str;
-	char *null;
+	char	*str;
+	char	*null;
 
 	str = va_arg(ap, char *);
 	if (!str)
@@ -84,7 +84,7 @@ void ft_apply_s(t_data *data, va_list ap)
 	}
 }
 
-static void width_sup_c_perc(t_data *data, char *str, int i)
+static void	width_sup_c_perc(t_data *data, char *str, int i)
 {
 	if (data->zero)
 		while (i < (data->width - 1))
@@ -108,12 +108,12 @@ static void width_sup_c_perc(t_data *data, char *str, int i)
 		}
 }
 
-void ft_apply_c_perc(t_data *data, va_list ap, char c)
+void		ft_apply_c_perc(t_data *data, va_list ap, char c)
 {
-	char *str;
+	char	*str;
 
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
-		return;
+		return ;
 	if (c == 'c')
 		str[0] = va_arg(ap, int);
 	else

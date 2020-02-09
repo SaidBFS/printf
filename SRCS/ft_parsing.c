@@ -6,13 +6,13 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:31:40 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/07 18:40:02 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/09 19:24:54 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/libftprintf.h"
 
-void get_flag(const char *str, t_data *data, int *i)
+void	get_flag(const char *str, t_data *data, int *i)
 {
 	if (str[*i] == '0')
 		data->zero = 1;
@@ -27,7 +27,7 @@ void get_flag(const char *str, t_data *data, int *i)
 		*i = *i + 1;
 }
 
-void get_width(const char *str, t_data *data, va_list ap, int *i)
+void	get_width(const char *str, t_data *data, va_list ap, int *i)
 {
 	if (str[*i] == '*')
 	{
@@ -44,17 +44,16 @@ void get_width(const char *str, t_data *data, va_list ap, int *i)
 		data->width = ft_atoi(str + *i);
 	while (str[*i] != 'c' && str[*i] != 's' && str[*i] != 'p' && str[*i] != 'd'
 			&& str[*i] != 'i' && str[*i] != 'u' && str[*i] != 'x'
-			&& str[*i] != 'X'  && str[*i] != '%' && str[*i] != '.')
+			&& str[*i] != 'X' && str[*i] != '%' && str[*i] != '.')
 		*i = *i + 1;
 }
 
-void get_precision(const char *str, t_data *data, va_list ap, int *i)
+void	get_precision(const char *str, t_data *data, va_list ap, int *i)
 {
 	if (str[*i] == '.')
 	{
 		*i = *i + 1;
 		data->precisionfound = 1;
-		data->zero = 0;
 		if (str[*i] == '*')
 		{
 			data->precision = va_arg(ap, int);
@@ -62,10 +61,16 @@ void get_precision(const char *str, t_data *data, va_list ap, int *i)
 		}
 		else
 			data->precision = ft_atoi(str + *i);
+		data->zero = 0;
+	}
+	if (data->precision < 0)
+	{
+		data->precision = 0;
+		data->precisionfound = 0;
 	}
 }
 
-void get_type(const char *str, t_data *data, int *i)
+void	get_type(const char *str, t_data *data, int *i)
 {
 	while (str[*i] != 'c' && str[*i] != 's' && str[*i] != 'p' && str[*i] != 'd'
 			&& str[*i] != 'i' && str[*i] != 'u' && str[*i] != 'x'
@@ -74,7 +79,7 @@ void get_type(const char *str, t_data *data, int *i)
 	data->type = str[*i];
 }
 
-void ft_parsing(const char *str, t_data *data, va_list ap, int *i)
+void	ft_parsing(const char *str, t_data *data, va_list ap, int *i)
 {
 	*i = *i + 1;
 	reset_struct(data);

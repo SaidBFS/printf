@@ -6,15 +6,15 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 00:52:23 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/08 16:47:39 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:18:33 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
-# include <stdio.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
 
@@ -45,10 +45,11 @@ void				ft_apply_s(t_data *data, va_list ap);
 void				precis_sup(t_data *data, char *str, int i, int neg);
 void				width_sup_precis_ok(t_data *data, char *str, int i);
 void				width_sup_precis_zero(t_data *data, char *str, int i);
-int                                     ft_atoi(const char *str);
-char							*ft_strdup(const char *src);
-size_t                          ft_strlen(const char *s);
-char                            *ft_itoa(int n);
-char                            *ft_itoa_base(unsigned long nb, char *base);
+int					ft_atoi(const char *str);
+char				*ft_strdup(const char *src);
+size_t				ft_strlen(const char *s);
+char				*ft_itoa(int n);
+char				*ft_itoa_base(unsigned long nb, char *base);
+void				print_struct(t_data *data);
 
 #endif

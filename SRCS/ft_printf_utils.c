@@ -6,11 +6,12 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:20:49 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/07 21:01:38 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:59:07 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/libftprintf.h"
+#include <stdio.h>
 
 void	reset_struct(t_data *data)
 {
@@ -20,6 +21,19 @@ void	reset_struct(t_data *data)
 	data->precisionfound = 0;
 	data->moins = 0;
 	data->zero = 0;
+}
+
+void	print_struct(t_data *data)
+{
+	printf("\n_________________________\n");
+	printf("data->type = %c\n", data->type);
+	printf("data->width = %d\n", data->width);
+	printf("data->precision = %d\n", data->precision);
+	printf("data->precisionfound = %d\n", data->precisionfound);
+	printf("data->moins = %d\n", data->moins);
+	printf("data->zero = %d\n", data->zero);
+	printf("_________________________\n");
+	fflush(stdout);
 }
 
 void	ft_putchar_len(char c, t_data *data)
@@ -57,13 +71,28 @@ void	ft_apply_conv(const char *str, t_data *data, va_list ap, int *i)
 		ft_apply_p(data, ap);
 }
 
-int		main(void)
+#define TEST "%010.s\n"
+/*
+int main()
 {
-//	int qlf;
 
-	ft_printf("ft_printf --> %p\n", NULL);
-	printf("   printf --> %p\n", NULL);
+	char *str;
+	char *str1;
+	char c;
+	int d;
+	int e;
+	unsigned int u;
+
+	d = 5155580;
+	u = 1089855;
+	c = 'f';
+	e = 100;
+	str = "yolo";
+	str1 = "world";
+	printf("=======MINE======\n");
 	fflush(stdout);
-	//system("leaks a.out");
+	ft_printf(TEST, "ok");
+	printf("=======VRAI======\n");
+	printf(TEST, "ok");
 	return (0);
-}
+}*/
