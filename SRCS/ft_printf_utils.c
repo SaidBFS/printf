@@ -56,15 +56,15 @@ void	ft_putchar_len(char c, t_data *data)
 	write(1, &c, 1);
 	data->len++;
 }
-/*
+
 int		main(void)
 {
-	void *qlf;
+	int qlf;
 
-	qlf = NULL;
-	ft_printf("ft_printf --> %.p\n", &qlf);
-	printf("   printf --> %.p\n", &qlf);
+	qlf = 7654;
+	ft_printf("ft_printf --> %x\n", qlf);
+	printf("   printf --> %x\n", qlf);
 	fflush(stdout);
 	system("leaks a.out");
 	return (0);
-}*/
+}

@@ -95,4 +95,5 @@ void		ft_apply_x_x(t_data *data, va_list ap, char c)
 	}
 	else
 		precis_sup(data, str, 0, 0);
+	free(str);
 }
