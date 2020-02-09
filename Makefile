@@ -27,7 +27,17 @@ LIBFT = LIBFT/ft_atoi.c \
 		LIBFT/ft_strndup.c \
 		LIBFT/ft_itoa_base.c 
 
-OBJ = $(SRCS:.c=.o) $(LIBFT:.c=.o)
+OBJ = 	SRCS/ft_apply_c_s_perc.o \
+		SRCS/ft_apply_diu_xx_p.o \
+		SRCS/ft_printf.o \
+		SRCS/ft_printf_utils.o \
+		SRCS/ft_parsing.o \
+		SRCS/ft_print_diu_xx_p.o \
+		LIBFT/ft_atoi.o \
+		LIBFT/ft_itoa.o \
+		LIBFT/ft_strlen.o \
+		LIBFT/ft_strndup.o \
+		LIBFT/ft_itoa_base.o 
 
 all: $(NAME)
 
