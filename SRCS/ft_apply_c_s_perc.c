@@ -92,7 +92,7 @@ static void width_sup_c_perc(t_data *data, char *str, int i)
 			ft_putchar_len('0', data);
 			i++;
 		}
-	if (!data->zero && !data->moins)
+	else if (!data->zero && !data->moins)
 		while (i < (data->width - 1))
 		{
 			ft_putchar_len(' ', data);
