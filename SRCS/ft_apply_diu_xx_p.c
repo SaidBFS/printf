@@ -12,7 +12,7 @@
 
 #include "../INCLUDES/libftprintf.h"
 
-static void	print_p(t_data *data, char *str, int i)
+static void print_p(t_data *data, char *str, int i)
 {
 	if (data->width > (int)ft_strlen(str) && !data->moins)
 		while (i < (data->width - (int)ft_strlen(str) - 2))
@@ -37,23 +37,28 @@ static void	print_p(t_data *data, char *str, int i)
 		}
 }
 
-void		ft_apply_p(t_data *data, va_list ap)
+void ft_apply_p(t_data *data, va_list ap)
 {
-	void			*address;
-	unsigned long	nb;
-	char			*str;
+	void *address;
+	unsigned long nb;
+	char *str;
 
 	address = va_arg(ap, void *);
-	nb = (unsigned long)address;
-	str = ft_itoa_base(nb, "0123456789abcdef");
+	if (!address && data->precisionfound && !data->precision)
+		str = ft_strdup("");
+	else
+	{
+		nb = (unsigned long)address;
+		str = ft_itoa_base(nb, "0123456789abcdef");
+	}
 	print_p(data, str, 0);
 	free(str);
 }
 
-void		ft_apply_d_i_u(t_data *data, va_list ap, char c)
+void ft_apply_d_i_u(t_data *data, va_list ap, char c)
 {
-	char	*str;
-	int		neg;
+	char *str;
+	int neg;
 
 	neg = 0;
 	if (c == 'd' || c == 'i')
@@ -76,10 +81,10 @@ void		ft_apply_d_i_u(t_data *data, va_list ap, char c)
 	free(str);
 }
 
-void		ft_apply_x_x(t_data *data, va_list ap, char c)
+void ft_apply_x_x(t_data *data, va_list ap, char c)
 {
-	char			*str;
-	unsigned int	nb;
+	char *str;
+	unsigned int nb;
 
 	nb = va_arg(ap, unsigned int);
 	if (c == 'x')

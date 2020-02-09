@@ -22,6 +22,12 @@ void	reset_struct(t_data *data)
 	data->zero = 0;
 }
 
+void	ft_putchar_len(char c, t_data *data)
+{
+	write(1, &c, 1);
+	data->len++;
+}
+
 int		ft_check_conv(const char *str, int i)
 {
 	i++;
@@ -51,20 +57,13 @@ void	ft_apply_conv(const char *str, t_data *data, va_list ap, int *i)
 		ft_apply_p(data, ap);
 }
 
-void	ft_putchar_len(char c, t_data *data)
-{
-	write(1, &c, 1);
-	data->len++;
-}
-/*
 int		main(void)
 {
 	int qlf;
 
-	qlf = 0;
-	ft_printf("ft_printf --> %*p\n", 0, &qlf);
-	printf("   printf --> %*p\n", 0, &qlf);
+	ft_printf("ft_printf --> %p\n", NULL);
+	printf("   printf --> %p\n", NULL);
 	fflush(stdout);
 	//system("leaks a.out");
 	return (0);
-}*/
+}

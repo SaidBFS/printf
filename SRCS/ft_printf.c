@@ -35,5 +35,6 @@ int		ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(ap);
+	printf("%d\n", data.len);
 	return (data.len);
 }
