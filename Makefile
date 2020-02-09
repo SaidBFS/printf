@@ -14,25 +14,28 @@ NAME = libftprintf.a
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = SRCS/ft_atoi.c \
-		SRCS/ft_itoa.c \
-		SRCS/ft_strlen.c \
-		SRCS/ft_strndup.c \
-		SRCS/ft_itoa_base.c \
-		SRCS/ft_apply_c_s_perc.c \
+SRCS =	SRCS/ft_apply_c_s_perc.c \
 		SRCS/ft_apply_diu_xx_p.c \
 		SRCS/ft_printf.c \
 		SRCS/ft_printf_utils.c \
 		SRCS/ft_parsing.c \
 		SRCS/ft_print_diu_xx_p.c
 
-OBJ = $(SRCS:.c=.o)
+LIBFT = LIBFT/ft_atoi.c \
+		LIBFT/ft_itoa.c \
+		LIBFT/ft_strlen.c \
+		LIBFT/ft_strndup.c \
+		LIBFT/ft_itoa_base.c 
+
+OBJ = $(SRCS:.c=.o) $(LIBFT:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
 	gcc $(CFLAGS) -c $(SRCS)
 	mv *.o SRCS/
+	gcc $(CFLAGS) -c $(LIBFT)
+	mv *.o LIBFT/
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
