@@ -12,7 +12,7 @@
 
 #include "../INCLUDES/libftprintf.h"
 
-static void	width_sup_precis_zero_flag(t_data *data, char *str, int i)
+static void	precis_not_found_flag(t_data *data, char *str, int i, int neg)
 {
 	if (!data->moins && !data->zero)
 		while (i < (data->width - (int)ft_strlen(str)))
@@ -20,7 +20,7 @@ static void	width_sup_precis_zero_flag(t_data *data, char *str, int i)
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	i = (str[0] == '-' && data->zero) ? 1 : 0;
+	i = (neg && data->zero) ? 1 : 0;
 	while (str[i])
 	{
 		ft_putchar_len(str[i], data);
@@ -35,9 +35,51 @@ static void	width_sup_precis_zero_flag(t_data *data, char *str, int i)
 		}
 }
 
-void		width_sup_precis_zero(t_data *data, char *str, int i)
+void		precis_not_found(t_data *data, char *str, int i, int neg)
 {
-	if (str[0] == '0' && data->precisionfound)
+	if (data->zero)
+	{
+		if (neg)
+			ft_putchar_len('-', data);
+		while (i < (data->width - (int)ft_strlen(str)))
+		{
+			ft_putchar_len('0', data);
+			i++;
+		}
+	}
+	precis_not_found_flag(data, str, 0, neg);
+}
+
+static void	width_sup_flag(t_data *data, char *str, int i, int nbz, int neg)
+{
+	if (neg)
+		ft_putchar_len('-', data);
+	while (i < nbz)
+	{
+		ft_putchar_len('0', data);
+		i++;
+	}
+	i = (neg) ? 1 : 0;
+	while (str[i])
+	{
+		ft_putchar_len(str[i], data);
+		i++;
+	}
+	i = 0;
+	if (data->moins)
+		while (i < (data->width - (int)ft_strlen(str) - nbz))
+		{
+			ft_putchar_len(' ', data);
+			i++;
+		}
+}
+
+void		width_sup(t_data *data, char *str, int i, int neg)
+{
+	int	nbz;
+	int	len;
+
+	if (str[0] == '0' && !data->precision)
 	{
 		while (i < data->width)
 		{
@@ -46,70 +88,25 @@ void		width_sup_precis_zero(t_data *data, char *str, int i)
 		}
 		return ;
 	}
-	if (data->zero || data->precision > (int)ft_strlen(str))
-	{
-		if (str[0] == '-')
-			ft_putchar_len('-', data);
-		while (i < (data->width - (int)ft_strlen(str)))
-		{
-			ft_putchar_len('0', data);
-			i++;
-		}
-	}
-	width_sup_precis_zero_flag(data, str, 0);
-}
-
-static void	width_sup_precis_ok_flag(t_data *data, char *str, int i, int nbz)
-{
-	while (i < nbz)
-	{
-		ft_putchar_len('0', data);
-		i++;
-	}
-	i = (str[0] == '-') ? 1 : 0;
-	while (str[i])
-	{
-		ft_putchar_len(str[i], data);
-		i++;
-	}
-	i = 0;
-	if (data->moins)
-		while (i < (data->width - (int)ft_strlen(str) - nbz))
-		{
-			ft_putchar_len(' ', data);
-			i++;
-		}
-}
-
-void		width_sup_precis_ok(t_data *data, char *str, int i)
-{
-	int	nbz;
-
+	len = (int)ft_strlen(str);
+	if (neg)
+		len = (int)ft_strlen(str) - 1;
 	nbz = 0;
-	if (data->precision > (int)ft_strlen(str))
-	{
-		if (str[0] == '-')
-			nbz = data->precision - (int)ft_strlen(str) + 1;
-		else
-			nbz = data->precision - (int)ft_strlen(str);
-	}
+	if (data->precision > len)
+		nbz = data->precision - len;
 	if (!data->moins)
 		while (i < (data->width - (int)ft_strlen(str) - nbz))
 		{
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	if (str[0] == '-')
-		ft_putchar_len('-', data);
-	width_sup_precis_ok_flag(data, str, 0, nbz);
+	width_sup_flag(data, str, 0, nbz, neg);
 }
 
 void		precis_sup(t_data *data, char *str, int i, int neg)
 {
 	int	len;
 
-	if (str[0] == '0' && !data->precision && data->precisionfound)
-		return ;
 	len = (int)ft_strlen(str);
 	if (neg)
 		len = (int)ft_strlen(str) - 1;

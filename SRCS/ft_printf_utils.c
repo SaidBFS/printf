@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../INCLUDES/libftprintf.h"
-#include <stdio.h>
 
 void	reset_struct(t_data *data)
 {
@@ -21,19 +20,6 @@ void	reset_struct(t_data *data)
 	data->precisionfound = 0;
 	data->moins = 0;
 	data->zero = 0;
-}
-
-void	print_struct(t_data *data)
-{
-	printf("\n_________________________\n");
-	printf("data->type = %c\n", data->type);
-	printf("data->width = %d\n", data->width);
-	printf("data->precision = %d\n", data->precision);
-	printf("data->precisionfound = %d\n", data->precisionfound);
-	printf("data->moins = %d\n", data->moins);
-	printf("data->zero = %d\n", data->zero);
-	printf("_________________________\n");
-	fflush(stdout);
 }
 
 void	ft_putchar_len(char c, t_data *data)
@@ -63,36 +49,9 @@ void	ft_apply_conv(const char *str, t_data *data, va_list ap, int *i)
 		ft_apply_c_perc(data, ap, str[*i]);
 	else if (str[*i] == 's')
 		ft_apply_s(data, ap);
-	else if (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'u')
-		ft_apply_d_i_u(data, ap, str[*i]);
-	else if (str[*i] == 'x' || str[*i] == 'X')
-		ft_apply_x_x(data, ap, str[*i]);
 	else if (str[*i] == 'p')
 		ft_apply_p(data, ap);
+	else if (str[*i] == 'd' || str[*i] == 'i' || str[*i] == 'u'
+			|| str[*i] == 'x' || str[*i] == 'X')
+		ft_apply_diu_xx(data, ap, str[*i]);
 }
-
-#define TEST "%010.s\n"
-/*
-int main()
-{
-
-	char *str;
-	char *str1;
-	char c;
-	int d;
-	int e;
-	unsigned int u;
-
-	d = 5155580;
-	u = 1089855;
-	c = 'f';
-	e = 100;
-	str = "yolo";
-	str1 = "world";
-	printf("=======MINE======\n");
-	fflush(stdout);
-	ft_printf(TEST, "ok");
-	printf("=======VRAI======\n");
-	printf(TEST, "ok");
-	return (0);
-}*/

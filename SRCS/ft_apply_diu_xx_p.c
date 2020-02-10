@@ -47,7 +47,7 @@ void		ft_apply_p(t_data *data, va_list ap)
 	if (!address && data->precisionfound && !data->precision)
 		str = ft_strdup("");
 	else
-	{
+	{	
 		nb = (long long)address;
 		str = ft_itoa_base(nb, "0123456789abcdef");
 	}
@@ -55,7 +55,7 @@ void		ft_apply_p(t_data *data, va_list ap)
 	free(str);
 }
 
-void		ft_apply_d_i_u(t_data *data, va_list ap, char c)
+void		ft_apply_diu_xx(t_data *data, va_list ap, char c)
 {
 	char	*str;
 	int		neg;
@@ -67,38 +67,17 @@ void		ft_apply_d_i_u(t_data *data, va_list ap, char c)
 		if (str[0] == '-')
 			neg = 1;
 	}
-	else
+	else if (c == 'u')
 		str = ft_itoa_base(va_arg(ap, unsigned int), "0123456789");
-	if (data->width >= data->precision)
-	{
-		if (!data->precisionfound)
-			width_sup_precis_zero(data, str, 0);
-		else
-			width_sup_precis_ok(data, str, 0);
-	}
+	else if (c == 'x')
+		str = ft_itoa_base(va_arg(ap, unsigned int), "0123456789abcdef");
+	else
+		str = ft_itoa_base(va_arg(ap, unsigned int), "0123456789ABCDEF");
+	if (!data->precisionfound)
+		precis_not_found(data, str, 0, neg);
+	else if (data->width >= data->precision)
+		width_sup(data, str, 0, neg);
 	else
 		precis_sup(data, str, 0, neg);
-	free(str);
-}
-
-void		ft_apply_x_x(t_data *data, va_list ap, char c)
-{
-	char			*str;
-	unsigned int	nb;
-
-	nb = va_arg(ap, unsigned int);
-	if (c == 'x')
-		str = ft_itoa_base(nb, "0123456789abcdef");
-	else
-		str = ft_itoa_base(nb, "0123456789ABCDEF");
-	if (data->width > data->precision)
-	{
-		if (!data->precision)
-			width_sup_precis_zero(data, str, 0);
-		else
-			width_sup_precis_ok(data, str, 0);
-	}
-	else
-		precis_sup(data, str, 0, 0);
 	free(str);
 }

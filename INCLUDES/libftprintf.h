@@ -14,7 +14,6 @@
 # define LIBFTPRINTF_H
 
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
 
@@ -37,19 +36,17 @@ void				ft_putchar_len(char c, t_data *data);
 int					ft_check_conv(const char *str, int i);
 void				ft_apply_conv(const char *str, t_data *data,
 						va_list ap, int *i);
-void				ft_apply_d_i_u(t_data *data, va_list ap, char c);
-void				ft_apply_x_x(t_data *data, va_list ap, char c);
+void				ft_apply_diu_xx(t_data *data, va_list ap, char c);
 void				ft_apply_p(t_data *data, va_list ap);
 void				ft_apply_c_perc(t_data *data, va_list ap, char c);
 void				ft_apply_s(t_data *data, va_list ap);
 void				precis_sup(t_data *data, char *str, int i, int neg);
-void				width_sup_precis_ok(t_data *data, char *str, int i);
-void				width_sup_precis_zero(t_data *data, char *str, int i);
+void				width_sup(t_data *data, char *str, int i, int neg);
+void				precis_not_found(t_data *data, char *str, int i, int neg);
 int					ft_atoi(const char *str);
 char				*ft_strdup(const char *src);
 size_t				ft_strlen(const char *s);
 char				*ft_itoa(int n);
 char				*ft_itoa_base(unsigned long nb, char *base);
-void				print_struct(t_data *data);
 
 #endif

@@ -53,7 +53,6 @@ void	get_precision(const char *str, t_data *data, va_list ap, int *i)
 	if (str[*i] == '.')
 	{
 		*i = *i + 1;
-		data->precisionfound = 1;
 		if (str[*i] == '*')
 		{
 			data->precision = va_arg(ap, int);
@@ -61,12 +60,11 @@ void	get_precision(const char *str, t_data *data, va_list ap, int *i)
 		}
 		else
 			data->precision = ft_atoi(str + *i);
-		data->zero = 0;
-	}
-	if (data->precision < 0)
-	{
-		data->precision = 0;
-		data->precisionfound = 0;
+		if (data->precision >= 0)
+		{
+			data->precisionfound = 1;
+			data->zero = 0;
+		}
 	}
 }
 
