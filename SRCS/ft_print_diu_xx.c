@@ -6,7 +6,7 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:55:04 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/09 19:28:14 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:22:55 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void		precis_not_found(t_data *data, char *str, int i, int neg)
 	precis_not_found_flag(data, str, 0, neg);
 }
 
-static void	width_sup_flag(t_data *data, char *str, int i, int nbz, int neg)
+static void	width_sup_flag(t_data *data, char *str, int nbz, int neg)
 {
+	int	i;
+
+	i = 0;
 	if (neg)
 		ft_putchar_len('-', data);
 	while (i < nbz)
@@ -100,7 +103,7 @@ void		width_sup(t_data *data, char *str, int i, int neg)
 			ft_putchar_len(' ', data);
 			i++;
 		}
-	width_sup_flag(data, str, 0, nbz, neg);
+	width_sup_flag(data, str, nbz, neg);
 }
 
 void		precis_sup(t_data *data, char *str, int i, int neg)

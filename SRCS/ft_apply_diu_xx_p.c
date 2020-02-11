@@ -6,7 +6,7 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:48:29 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/09 20:02:16 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:21:41 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		ft_apply_p(t_data *data, va_list ap)
 	if (!address && data->precisionfound && !data->precision)
 		str = ft_strdup("");
 	else
-	{	
+	{
 		nb = (long long)address;
 		str = ft_itoa_base(nb, "0123456789abcdef");
 	}

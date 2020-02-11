@@ -6,13 +6,13 @@
 /*   By: saboufou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 23:44:56 by saboufou          #+#    #+#             */
-/*   Updated: 2020/02/09 16:42:06 by saboufou         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:24:45 by saboufou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/libftprintf.h"
 
-static int		ft_check_conv(const char *str, int i)
+static int	ft_check_conv(const char *str, int i)
 {
 	i++;
 	while (str[i])
