@@ -17,7 +17,6 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS =	SRCS/ft_apply_c_s_perc.c \
 		SRCS/ft_apply_diu_xx_p.c \
 		SRCS/ft_printf.c \
-		SRCS/ft_printf_utils.c \
 		SRCS/ft_parsing.c \
 		SRCS/ft_print_diu_xx.c
 
@@ -30,7 +29,6 @@ LIBFT = LIBFT/ft_atoi.c \
 OBJ = 	SRCS/ft_apply_c_s_perc.o \
 		SRCS/ft_apply_diu_xx_p.o \
 		SRCS/ft_printf.o \
-		SRCS/ft_printf_utils.o \
 		SRCS/ft_parsing.o \
 		SRCS/ft_print_diu_xx.o \
 		LIBFT/ft_atoi.o \

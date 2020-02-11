@@ -29,20 +29,22 @@ typedef struct		s_data
 }					t_data;
 
 int					ft_printf(const char *str, ...);
-void				ft_parsing(const char *str, t_data *data,
+void				get_flag(const char *str, t_data *data, int *i);
+void				get_width(const char *str, t_data *data,
 						va_list ap, int *i);
+void				get_precision(const char *str, t_data *data,
+						va_list ap, int *i);
+void				get_type(const char *str, t_data *data, int *i);
 void				reset_struct(t_data *data);
 void				ft_putchar_len(char c, t_data *data);
-int					ft_check_conv(const char *str, int i);
-void				ft_apply_conv(const char *str, t_data *data,
-						va_list ap, int *i);
 void				ft_apply_diu_xx(t_data *data, va_list ap, char c);
 void				ft_apply_p(t_data *data, va_list ap);
 void				ft_apply_c_perc(t_data *data, va_list ap, char c);
 void				ft_apply_s(t_data *data, va_list ap);
 void				precis_sup(t_data *data, char *str, int i, int neg);
 void				width_sup(t_data *data, char *str, int i, int neg);
-void				precis_not_found(t_data *data, char *str, int i, int neg);
+void				precis_not_found(t_data *data, char *str,
+						int i, int neg);
 int					ft_atoi(const char *str);
 char				*ft_strdup(const char *src);
 size_t				ft_strlen(const char *s);

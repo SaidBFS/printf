@@ -12,6 +12,16 @@
 
 #include "../INCLUDES/libftprintf.h"
 
+void	reset_struct(t_data *data)
+{
+	data->type = 0;
+	data->width = 0;
+	data->precision = 0;
+	data->precisionfound = 0;
+	data->moins = 0;
+	data->zero = 0;
+}
+
 void	get_flag(const char *str, t_data *data, int *i)
 {
 	if (str[*i] == '0')
@@ -75,14 +85,4 @@ void	get_type(const char *str, t_data *data, int *i)
 				&& str[*i] != 'X' && str[*i] != '%')
 		*i = *i + 1;
 	data->type = str[*i];
-}
-
-void	ft_parsing(const char *str, t_data *data, va_list ap, int *i)
-{
-	*i = *i + 1;
-	reset_struct(data);
-	get_flag(str, data, i);
-	get_width(str, data, ap, i);
-	get_precision(str, data, ap, i);
-	get_type(str, data, i);
 }
